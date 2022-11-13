@@ -9,7 +9,7 @@
 <table>
     <caption>
         <h1>Все клиенты</h1>
-        <a href="{{route('createСlient')}}">+</a>
+        <a href="{{route('createClient')}}">+</a>
 
     </caption>
     <tr>
@@ -24,7 +24,7 @@
         <td>1</td>
         <td>1</td>
         <td><a href="{{route('updateClient')}}">↓↑</a></td>
-        <td><a href="{{route('deleteClient')}}">--</a></td>
+        {{--<td><a href="{{route('deleteClient')}}">--</a></td>--}}
     </tr>
 </table>
 

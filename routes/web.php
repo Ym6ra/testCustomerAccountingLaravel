@@ -2,6 +2,8 @@
 
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +23,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/create', function () {
+Route::get('/createClient', function () {
     return view('createСlient');
-});
+})->name('createClient');
 
 Route::get('/update', function () {
     return view('updateClient');
-});
+})->name('updateClient');
 
-Route::post('/success', function () {
-    return Request();
-})->name('createClient');
+Route::post('/createClientAuto', 'CreateController@submit')->name('successCreate');

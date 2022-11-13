@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class createClient extends Model
+class Auto extends Model
 {
     use HasFactory;
 
-    public function autos(){
-        return $this->hasMany(createAuto::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 }

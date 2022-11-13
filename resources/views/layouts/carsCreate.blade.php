@@ -1,14 +1,28 @@
-@section('createCars')
-<div class="form-group">
-    <label for="mark">mark</label>
-    <input type='text' name='mark' placeholder="mark" id='mark' class='form-control'>
-    <label for="model">model</label>
-    <input type='text' name='model' placeholder="model" id='model' class='form-control'>
-    <label for="color">color</label>
-    <input type='text' name='color' placeholder="color" id='color' class='form-control'>
-    <label for="number">number</label>
-    <input type='text' name='number' placeholder="Адрес" id='number' class='form-control'>
-    <label for="status">status</label>
-    <input type='checkbox' name='status' id='ctatus'>   
+<div class="form-row col-md-10">
+    <div class="form-group col-md-2">
+        <label for="mark">Марка</label>
+        <input type='text' name='mark' placeholder="Марка" id='mark' class='form-control'>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="model">Модель</label>
+        <input type='text' name='model' placeholder="Модель" id='model' class='form-control'>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="color">Цвет</label>
+        <input type='color' name='color' id='color' class='form-control'>
+    </div>
 </div>
-@endsection
+<div class="form-row col-md-10">
+    <div class="form-group col-md-2">
+        <label for="number">Гос. номер</label>
+        <input type='text' name='number' placeholder="а111аа" id='number' class='form-control'>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="status">Состояние</label>
+        <select name="status" class='form-control'>
+                <option>Присутствует</option>
+                <option>Отсутствует</option>
+            </select>  
+    </div> 
+</div>
+

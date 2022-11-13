@@ -19,16 +19,18 @@ use app\Http\Controllers;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'CreateController@ClientAllData')->name('allData');
 
 Route::get('/createClient', function () {
     return view('createСlient');
 })->name('createClient');
 
-Route::get('/update', function () {
+Route::get('/updateClient', function () {
     return view('updateClient');
 })->name('updateClient');
 
-Route::post('/createClientAuto', 'CreateController@submit')->name('successCreate');
+Route::get('/createAuto', 'CreateController@ClientData')->name('createAuto');
+
+Route::post('/createClient', 'CreateController@submitClient')->name('successCreateClient');
+
+Route::post('/createSucces', 'CreateController@submitAuto')->name('successCreateAuto');

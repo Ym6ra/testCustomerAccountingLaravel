@@ -18,7 +18,7 @@
         @endforeach
     </div>
 @endif
-<form action="{{route('successCreate')}}" method="post">
+<form action="{{route('successCreateClient')}}" method="post">
     @csrf
     <div class="form-row col-md-10">
         <div class="form-group col-md-4">
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="phone">Номер телефона</label>
-            <input type="tel" id="phone" name="phone" class='form-control' placeholder="8-800-555-35-35" >
+            <input type="tel" id="phone" name="phone" class='form-control' placeholder="Только цифры согласно примера 88005553535" >
         </div>
         </div>
         <div class="form-group col-md-4">

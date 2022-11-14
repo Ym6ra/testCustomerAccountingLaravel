@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->string('status');
             $table->timestamps();
+            //$table->unsignedBigInteger('cleint_id')->nullable();
+            //$table->index('client_id', 'auto_client_idx');
+            //$table->foreign('client_id', 'auto_client_fk')->on('clients')->references('id');
         });
     }
 

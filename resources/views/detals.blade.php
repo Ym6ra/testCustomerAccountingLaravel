@@ -1,14 +1,14 @@
 @extends('layouts.base')
 
 @section('title')
-Создать автомобиль клиента
+Клиент № {{$id['id']}}
 @endsection
 
 @section('content')
 
 
 
-<h1>Создать автомобиль клиента</h1>
+<h1>Клиент № {{$id['id']}}</h1>
 <hr>
 {{--<h2>Персональные данные</h2>--}}
 @if($errors->any())
@@ -63,6 +63,7 @@
         <th scope="col">Цвет</th>
         <th scope="col">Гос номер</th>
         <th scope="col">Статус</th>
+        <th scope="col">Удалить</th>
     </tr>
     </thead>
     <tbody>
@@ -83,22 +84,20 @@
             <td scope="col">
                 {{$auto->status}}
             </td>
+            <td>
+                <form action='{{route('deleteAuto',$auto->id)}}'>
+                    <button class='btn btn-danger'>Удалить Автомобиль</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>     
     <hr>
-<form action="{{route('successCreateAuto')}}" method="post">
-    @csrf
-    <h4>Новый Автомобиль</h4>
-        <input type="hidden" name="client_id" value="{{$data->id}}">
-        <input type="hidden" name="cars" value="{{$data->cars}}">
-        @include('layouts/carsCreate')
-        <button type="submit" class="btn btn-primary">Сохранить автомобиль</button>
-</form>
+<a class="btn btn-primary" href="{{route('createAuto',$data->id)}}">Добавить новый автомобиль</a>
 <hr>
 <form action="{{route('AllData', 1)}}" method="get">
-    <button type="submit" class="btn btn-primary">Завершить создание</button>
+    <button type="submit" class="btn btn-primary">На главную</button>
 </form>
 
 

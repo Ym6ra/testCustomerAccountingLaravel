@@ -23,7 +23,7 @@ class CreateAutoRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {
+    {   
         return [
             'client_id' => 'required',
             'mark' => 'required',

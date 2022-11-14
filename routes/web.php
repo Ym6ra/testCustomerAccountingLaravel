@@ -33,4 +33,4 @@ Route::get('/createAuto', 'CreateController@ClientData')->name('createAuto');
 
 Route::post('/createClient', 'CreateController@submitClient')->name('successCreateClient');
 
-Route::post('/createSucces', 'CreateController@submitAuto')->name('successCreateAuto');
+Route::post('/createAuto', 'CreateController@submitAuto')->name('successCreateAuto');

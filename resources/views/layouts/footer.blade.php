@@ -1,8 +1,8 @@
 <!-- Footer -->
 <footer>
-    <div class="container">
+    {{--<div class="container">
         <h2>подвал</h2>
-    </div>
+    </div>--}}
 </footer>
 
 <!-- Bootstrap core JavaScript -->

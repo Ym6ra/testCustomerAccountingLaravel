@@ -30,11 +30,11 @@
             <input type="tel" id="phone" name="phone" class='form-control' placeholder="Только цифры согласно примера 88005553535" >
         </div>
         </div>
+        <div class="form-row col-md-10">
         <div class="form-group col-md-4">
             <label for="address">Адрес</label>
             <input type='text' name='address' placeholder="Адрес" id='address' class='form-control'>
         </div>
-    <div class="form-row col-md-10">
         <div class="form-group col-md2">
             <label for="gender">Пол</label>
             <select name="gender" class='form-control'>
@@ -43,10 +43,11 @@
                 <option>иное</option>
             </select>
         </div>
-        <div class="form-group col-md2">
+        </div>
+        {{--<div class="form-group col-md2">
             <label for="cars">Машины</label>
             <input type='number' name='cars' placeholder="Сколько машин" id='cars' class='form-control'>
-        </div>
+        </div>--}}
 
     </div>
     <button type="submit" class="btn btn-primary">Отправить данные клиента</button>

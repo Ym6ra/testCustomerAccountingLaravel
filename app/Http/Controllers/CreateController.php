@@ -112,6 +112,7 @@ class CreateController extends Controller
                 ->where('client_id', $clientsId[$i]->id)
                 ->get();
             $autos[$i] = $auto;
+            $autosPerClient[$i] = $auto->count();
         }
         //dump($autos);
         //dump($clients);
@@ -122,6 +123,7 @@ class CreateController extends Controller
             'pages'=> $pages,
             'page'=>$page,
             'clientsPerPage'=> $clientsPerPage,
+            'autosPerClient'=> $autosPerClient,
             'autos'=>$autos
         ];
         //dump($val);
@@ -146,5 +148,57 @@ class CreateController extends Controller
         ];
         return view('createAuto', ['client' => $client],['data'=> $val],['pid'=>$paginateId]);
 
+    }
+    public function statistic(){
+        $autos = DB::table('autos')
+                        ->get();
+        
+        $aCount = $autos ->count(); //где a = autos, count
+
+        $aMark = DB::table('autos') // где a = autos, mark
+                        ->select('mark') 
+                        ->groupBy('mark')
+                        ->orderBy('mark')
+                        ->get();
+        $amCount = $aMark->count(); //где a = autos, m = mark, count
+
+        for ($i = 0; $i < $amCount; $i++){ 
+            $val = $autos->where('mark', $aMark[$i]->mark)->count();
+            $amVal[$i] = $val; //где a = autos, m = mark, val
+        };
+
+        $status = 'Присутствует';
+
+        $aStatus = DB::table('autos')->where('status', $status)->get();  //где a = autos, status
+
+        $asCount = $aStatus->count(); //где a = autos, s = status, count
+
+
+
+        for ($i = 0; $i < $amCount; $i++) {
+            $val = $aStatus->where('mark', $aMark[$i]->mark)->count();
+            $amsVal[$i] = $val; //где a = autos, s = status, m = mark, val
+        };
+
+        //dump($autos);
+        //dump($aStatus);
+        //dump($aCount);
+        //dump($asCount);
+        //dump($aMark);
+        //dump($amCount);
+        //dump($amVal);
+        //dump($amsVal);
+
+        $data = [
+            'aCount' => $aCount, //всего машин
+            'asCount' => $asCount, //всего машин на стоянке
+            'aMark' => $aMark, // марки автомобилей
+            'amCount' => $amCount, //всего марок автомобилей
+            'amVal' => $amVal, //количество машин одной марки на стоянке и вне
+            'amsVal' => $amsVal, // количество машин одной марки на стоянке
+        ];
+
+
+        return view('statistic', ['data' => $data]);
     }
 }

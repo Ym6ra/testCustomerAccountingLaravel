@@ -31,6 +31,8 @@ Route::get('/createClient', function () {
     return view('createСlient');
 })->name('createClient');
 
+Route::get('/statistic', 'CreateController@statistic')->name('statistic');
+
 Route::get('/updateСlient/{id}', 'UpdateController@updateClient')->name('updateСlientData');
 
 Route::post('/updateClient/{id}', 'UpdateController@submitUpdateClient')->name('successUpdateClient');

@@ -10,6 +10,8 @@
     <caption>
         <span>Все клиенты</span><br>
         <a class='btn btn-primary' href="{{route('createClient')}}">Добавить новго клиента</a>
+        <a class='btn btn-primary' href="{{route('statistic')}}">Статистика стоянки</a>
+        
 
     </caption>
     <thead class="thead-dark">
@@ -33,7 +35,7 @@
         <td class="text-center">
             @for ($i = 0; $i <= $val['clientsPerPage']-1; $i++)
                         {{--{{$val['autos'][$i]}}--}}
-                @for ($a = 0; $a <= $val['clientsPerPage']-1; $a++)
+                @for ($a = 0; $a <= $val['autosPerClient'][$i]-1; $a++)
                         {{--{{$val['autos'][$i][$a]->client_id}}--}}
                     @if ($client->id == $val['autos'][$i][$a]->client_id)
                         {{--{{$val['autos'][$i][$a]->client_id}}--}}

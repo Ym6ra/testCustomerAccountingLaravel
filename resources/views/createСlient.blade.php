@@ -53,6 +53,10 @@
     <button type="submit" class="btn btn-primary">Отправить данные клиента</button>
 
 </form>
+<hr>
+<form action="{{route('AllData', 1)}}" method="get">
+    <button type="submit" class="btn btn-primary">На главную</button>
+</form>
 
 
 

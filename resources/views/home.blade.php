@@ -14,50 +14,56 @@
     </caption>
     <thead class="thead-dark">
     <tr>
-        <th scope="col">ФИО</th>
-        <th scope="col">Автомобиль</th>
-        <th scope="col">Номер телефона</th>
-        <th scope="col">Редактировать</th>
-        <th scope="col">Удалить</th>
+        <th scope="col" class="text-center">ФИО</th>
+        <th scope="col" class="text-center">Автомобиль</th>
+        {{--<th scope="col" class="text-center">Фиксация времени</th>--}}
+        <th scope="col" class="text-center">Номер телефона</th>
+        <th scope="col" class="text-center">Редактировать</th>
+        <th scope="col" class="text-center">Удалить</th>
     </tr>
     </thead>
     <tbody>
     @foreach ($data as $client)
     <tr>
-        <td>
+        <td class="text-center">
             <h4>{{$client->name}}</h4>
         <a class='btn btn-primary' href="{{route('oneClientData', $client->id)}}">Детальнее</a>
             <div></div>
         </td>
-        <td>
-            @foreach ($client->autos as $auto)
-            @if ($auto->status == 'Присутствует')
-                <form action="{{route('updateStatus',$auto->id)}} " method="post">
-                    @csrf 
-                    <input type="hidden" name="status" value="Отсутствует">
-                    <button type="submit" class="alert alert-success">
-                        <span>Гос. Номер: <strong>{{$auto->number}}</strong></span><br>
-                        <span>Статус: {{$auto->status}}</span>
-                    </button>
-                </form>
-            @else
-                <form action="{{route('updateStatus',$auto->id)}} " method="post">
-                    @csrf 
-                    <input type="hidden" name="status" value="Присутствует">
-                    <button type="submit" class="alert alert-danger">
-                        <span>Гос. Номер: <strong>{{$auto->number}}</strong></span><br>
-                        <span>Статус: {{$auto->status}}</span>
-                    </button>
-                </form>
-            @endif
-            @endforeach
+        <td class="text-center">
+            @for ($i = 0; $i <= $val['clientsPerPage']-1; $i++)
+                        {{--{{$val['autos'][$i]}}--}}
+                @for ($a = 0; $a <= $val['clientsPerPage']-1; $a++)
+                        {{--{{$val['autos'][$i][$a]->client_id}}--}}
+                    @if ($client->id == $val['autos'][$i][$a]->client_id)
+                        {{--{{$val['autos'][$i][$a]->client_id}}--}}
+                        <form action="{{route('updateStatus',$val['autos'][$i][$a]->id)}} " method="post">
+                        @csrf 
+                        @if ($val['autos'][$i][$a]->status == 'Присутствует')
+                            <input type="hidden" name="status" value="Отсутствует">
+                            <button type="submit" class="alert alert-success">
+                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>
+                                <span>Статус: {{$val['autos'][$i][$a]->status}}</span>
+                            </button>
+                        </form>
+                        @else
+                            <input type="hidden" name="status" value="Присутствует">
+                            <button type="submit" class="alert alert-danger">
+                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>
+                                <span>Статус: {{$val['autos'][$i][$a]->status}}</span>
+                            </button>
+                        </form>
+                        @endif
+                    @endif
+                @endfor
+            @endfor
         </td>
-        <td>{{$client->phone}}</td>
-        <td>
+        <td class="text-center">{{$client->phone}}</td>
+        <td class="text-center">
             <form action='{{route('updateСlientData',$client->id)}}'>
             <button class='btn btn-primary'>Редактировать клиента</button>
             </form>
-        <td>
+        <td class="text-center">
             <form action='{{route('deleteClient',$client->id)}}'>
             <button class='btn btn-danger'>Удалить клиента</button>
             </form>
@@ -69,9 +75,9 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         {{--{{$pages['pages']}}--}}
-        @for ($i = 1; $i <= $pages['pages']; $i++)
-            @if ($pages['pages']!=1)
-                @if ($pages['page']==$i)
+        @for ($i = 1; $i <= $val['pages']; $i++)
+            @if ($val['pages']!=1)
+                @if ($val['page']==$i)
                     <li class="page-item"><a class="page-link active" href="{{route('AllData',$i)}}">{{$i}}</a></li>
                 @else
                     <li class="page-item"><a class="page-link" href="{{route('AllData',$i)}}">{{$i}}</a></li>

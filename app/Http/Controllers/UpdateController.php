@@ -17,10 +17,11 @@ class UpdateController extends Controller
         //dd($id);
         $curentId=$id;
         //$auto =  Auto::find($id);
-        $auto = DB::table('autos')->where('id', $curentId)->first();
+        $auto = DB::table('autos')
+                        ->where('id', $curentId)
+                        ->limit(1)
+                        ->update(['status' => $req->input('status')]);
         //dd($auto);
-        $auto->status = $req->input('status');
-        $auto->update();
         //echo $auto;
 
         return redirect()->back();
@@ -57,6 +58,7 @@ class UpdateController extends Controller
         'phone' => $req->input('phone'),
         'address' => $req->input('address'),
         'cars' => 1,
+        "updated_at" => \Carbon\Carbon::now(),
         ]);
 
         return redirect()->route('AllData', $page);

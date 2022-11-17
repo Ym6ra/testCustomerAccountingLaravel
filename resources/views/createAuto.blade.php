@@ -1,52 +1,77 @@
 @extends('layouts.base')
 
 @section('title')
-Создать автомобиль клиента
+Клиент № {{$data['clientId']}}
 @endsection
 
 @section('content')
+{{--{{$data['pid']->}}--}}
+{{--{{dd($pid[0]->id)}}--}}
+<div class="d-flex justify-content-center mt-3 align-items-center">
+@if ($data['clientId'] != $data['pid'][0]->id)
+    @for ($i = 0; $i < $data['last']; $i++)
+        @if ($data['clientId'] == $data['pid'][$i]->id)
+            <a class='mr-3' href="{{route('oneClientData', $data['pid'][$i-1]->id)}}">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+            </a>
+        @endif
+    @endfor
+@endif
 
+<h1>Клиент № {{$data['clientId']}}</h1>
 
-
-<h1>Создать автомобиль клиента</h1>
+@if ($data['clientId'] != $data['pid'][$data['last']-1]->id)
+    @for ($i = 0; $i < $data['last']; $i++)
+        @if ($data['clientId'] == $data['pid'][$i]->id)
+            <a class='ml-3' href="{{route('oneClientData', $data['pid'][$i+1]->id)}}">
+                <span class="material-symbols-outlined">
+                    arrow_forward
+                </span>
+            </a>
+        @endif
+    @endfor
+@endif
+</div>
 <hr>
 {{--<h2>Персональные данные</h2>--}}
-@if($errors->any())
+{{--@if($errors->any())
     <div class="alert alert-danger">
         @foreach ($errors->all() as $error)
         <li>{{$error}}</li>            
         @endforeach
     </div>
-@endif
+@endif--}}
 <table class="table table-bordered">        
     <caption>
         Персональные данные клиента
     </caption>
     <thead class="thead-dark">
     <tr>
-        <th scope="col">Идентификатор</th>
-        <th scope="col">ФИО</th>
-        <th scope="col">Пол</th>
-        <th scope="col">Номер телефона</th>
-        <th scope="col">Адрес</th>
+        <th scope="col" class="text-center">Идентификатор</th>
+        <th scope="col" class="text-center">ФИО</th>
+        <th scope="col" class="text-center">Пол</th>
+        <th scope="col" class="text-center">Номер телефона</th>
+        <th scope="col" class="text-center">Адрес</th>
     </tr>
     </thead>
     <tbody>
         <tr>
-            <td scope="col">
-                {{$data->id}}
+            <td scope="col" class="text-center">
+                {{$data['clientId']}}
             </td>
-            <td scope="col">
-                {{$data->name}}
+            <td scope="col" class="text-center">
+                {{$client[0]->name}}
             </td>
-            <td scope="col">
-                {{$data->gender}}
+            <td scope="col" class="text-center">
+                {{$client[0]->gender}}
             </td>
-            <td scope="col">
-                {{$data->phone}}
+            <td scope="col" class="text-center">
+                {{$client[0]->phone}}
             </td>
-            <td scope="col">
-                {{$data->address}}
+            <td scope="col" class="text-center">
+                {{$client[0]->address}}
             </td>
         </tr>
     </tbody>
@@ -58,47 +83,55 @@
     </caption>
     <thead class="thead-dark">
     <tr>
-        <th scope="col">Марка</th>
-        <th scope="col">Модель</th>
-        <th scope="col">Цвет</th>
-        <th scope="col">Гос номер</th>
-        <th scope="col">Статус</th>
+        <th scope="col" class="text-center">Марка</th>
+        <th scope="col" class="text-center">Модель</th>
+        <th scope="col" class="text-center">Цвет</th>
+        <th scope="col" class="text-center">Гос номер</th>
+        <th scope="col" class="text-center">Статус</th>
+        <th scope="col" class="text-center">Удалить</th>
     </tr>
     </thead>
     <tbody>
-        @foreach ($data->autos as $auto)
+        @if ($client[0]->id != null)
+        @for ($i = 0; $i < $data['val']; $i++)
         <tr>
-            <td scope="col">
-                {{$auto->mark}}
+            <td scope="col" class="text-center">
+                {{$client[$i]->mark}}
             </td>
-            <td scope="col">
-                {{$auto->model}}
+            <td scope="col" class="text-center">
+                {{$client[$i]->model}}
             </td>
-            <td scope="col">
-                <div style="height: 15px; width:15px; background-color:{{$auto->color}};"></div>{{$auto->color}}
+            <td scope="col" class="text-center">
+                <div style="height: 15px; width:15px; background-color:{{$client[$i]->color}};" class="text-center"></div>{{$client[$i]->color}}
             </td>
-            <td scope="col">
-                {{$auto->number}}
+            <td scope="col" class="text-center">
+                {{$client[$i]->number}}
             </td>
-            <td scope="col">
-                {{$auto->status}}
+            <td scope="col" class="text-center">
+                {{$client[$i]->status}}
+            </td>
+            <td class="text-center">
+                <form action='{{route('deleteAuto',$client[$i]->id)}}'>
+                    <button class='btn btn-danger'>Удалить Автомобиль</button>
+                </form>
             </td>
         </tr>
-        @endforeach
+        @endfor
+        @endif
     </tbody>
 </table>     
     <hr>
-<form action="{{route('successCreateAuto')}}" method="post">
+<form action="{{route('successCreateAuto', $data['clientId'] )}}" method="post">
     @csrf
     <h4>Новый Автомобиль</h4>
-        <input type="hidden" name="client_id" value="{{$data->id}}">
-        <input type="hidden" name="cars" value="{{$data->cars}}">
+        <input type="hidden" name="client_id" value="{{$data['clientId']}}">
+        <input type="hidden" name="cars" value="1"> <!--оставшийся костыль -->
         @include('layouts/carsCreate')
         <button type="submit" class="btn btn-primary">Сохранить автомобиль</button>
 </form>
 <hr>
 <form action="{{route('AllData', 1)}}" method="get">
-    <button type="submit" class="btn btn-primary">Завершить создание</button>
+    <button type="submit" class="btn btn-primary">На главную</button>
 </form>
 
 

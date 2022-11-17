@@ -3,6 +3,7 @@
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 
 
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\View;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+Route::get('/',Function(){
+    return redirect()->route('AllData', 1);
+});
+
 Route::get('/page/{currentPage}', 'CreateController@ClientAllData')->name('AllData');
 
 Route::get('/createClient', function () {
@@ -34,7 +39,7 @@ Route::get('/createAuto/{id}', 'CreateController@ClientData')->name('createAuto'
 
 Route::post('/createClient', 'CreateController@submitClient')->name('successCreateClient');
 
-Route::post('/createAuto', 'CreateController@submitAuto')->name('successCreateAuto');
+Route::post('/client/{id}', 'CreateController@submitAuto')->name('successCreateAuto');
 
 Route::get('/client/{id}', 'CreateController@oneClient')->name('oneClientData');
 

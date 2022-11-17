@@ -32,10 +32,10 @@ class CreateController extends Controller
         //$client->cars = 1;
         //$client->save();
         $client =  DB::table('clients')->insertGetId([
-            'name' => $req->input('name'),
-            'gender' => $req->input('gender'),
-            'phone' => $req->input('phone'),
-            'address' => $req->input('address'),
+            'name' => htmlspecialchars($req->input('name')),
+            'gender' => htmlspecialchars($req->input('gender')),
+            'phone' => htmlspecialchars($req->input('phone')),
+            'address' => htmlspecialchars($req->input('address')),
             'cars' => 1,
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
@@ -55,11 +55,11 @@ class CreateController extends Controller
             //$auto->save();
         $auto = DB::table('autos')->insert([
             'client_id' => $req->input('client_id'),
-            'mark' => $req->input('mark'),
-            'model' => $req->input('model'),
-            'color' => $req->input('color'),
-            'number'=> $req->input('number'),
-            'status' => $req->input('status'),
+            'mark' => htmlspecialchars($req->input('mark')),
+            'model' => htmlspecialchars($req->input('model')),
+            'color' => htmlspecialchars($req->input('color')),
+            'number'=> htmlspecialchars($req->input('number')),
+            'status' => htmlspecialchars($req->input('status')),
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
         ]);

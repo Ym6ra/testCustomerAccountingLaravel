@@ -88,6 +88,7 @@
         <th scope="col" class="text-center">Цвет</th>
         <th scope="col" class="text-center">Гос номер</th>
         <th scope="col" class="text-center">Статус</th>
+        <th scope="col" class="text-center">Редактировать</th>
         <th scope="col" class="text-center">Удалить</th>
     </tr>
     </thead>
@@ -111,6 +112,11 @@
                 {{$client[$i]->status}}
             </td>
             <td class="text-center">
+                <form action='{{route('updateAuto', $client[$i]->id)}}'>
+                    <button class='btn btn-primary'>Редактировать Автомобиль</button>
+                </form>
+            </td>
+            <td class="text-center">
                 <form action='{{route('deleteAuto',$client[$i]->id)}}'>
                     <button class='btn btn-danger'>Удалить Автомобиль</button>
                 </form>
@@ -121,6 +127,13 @@
     </tbody>
 </table>     
     <hr>
+@if($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>            
+        @endforeach
+    </div>
+@endif
 <form action="{{route('successCreateAuto', $data['clientId'] )}}" method="post">
     @csrf
     <h4>Новый Автомобиль</h4>

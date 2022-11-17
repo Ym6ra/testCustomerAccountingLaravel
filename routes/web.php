@@ -39,6 +39,10 @@ Route::post('/updateClient/{id}', 'UpdateController@submitUpdateClient')->name('
 
 Route::get('/createAuto/{id}', 'CreateController@ClientData')->name('createAuto');
 
+Route::get('/updateAuto/{id}', 'UpdateController@updateAuto')->name('updateAuto');
+
+Route::post('/updateAuto/{id}', 'UpdateController@submitUpdateAuto')->name('succesUpdateAuto');
+
 Route::post('/createClient', 'CreateController@submitClient')->name('successCreateClient');
 
 Route::post('/client/{id}', 'CreateController@submitAuto')->name('successCreateAuto');

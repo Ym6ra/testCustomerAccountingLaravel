@@ -7,8 +7,8 @@
 @section('content')
 <div>
     <h4>В данный момент на стоянке 
-        <strong>{{$data['asCount']}}</strong> 
-        машин из <strong>{{$data['aCount']}}</strong> 
+        <strong>{{$data['AutosStatusCount']}}</strong> 
+        машин из <strong>{{$data['AutosCount']}}</strong> 
         зарегистрированных
     </h4>
 </div>
@@ -27,26 +27,26 @@
     </tr>
     </thead>
     <tbody>
-        @for ($i = 0; $i < $data['amCount']; $i++)
+        @for ($i = 0; $i < $data['AutosMarkCount']; $i++)
         <tr>
             <td class="text-center">
-                {{$data['aMark'][$i]->mark}} <br>
-                Популярность: {{round(($data['amVal'][$i]/$data['asCount'])*100, 2)}}%
+                {{$data['AutosMark'][$i]->mark}} <br>
+                Популярность: {{round(($data['AutosMarkVal'][$i]/$data['AutosStatusCount'])*100, 2)}}%
             </td>
             <td class="text-center">
-                {{$data['amsVal'][$i]}}
+                {{$data['AutosMarkStatusVal'][$i]}}
             </td>
             <td class="text-center">
-                {{$data['amVal'][$i]}}
+                {{$data['AutosMarkVal'][$i]}}
             </td>
             <td class="text-center">
-                {{round(($data['amsVal'][$i]/$data['amVal'][$i])*100, 2)}}%
+                {{round(($data['AutosMarkStatusVal'][$i]/$data['AutosMarkVal'][$i])*100, 2)}}%
             </td>
         </tr>
         @endfor
     </tbody>
 </table>
-<form action="{{route('AllData', 1)}}" method="get">
+<form action="{{route('AllData')}}" method="get">
     <button type="submit" class="btn btn-primary">На главную</button>
 </form>
 

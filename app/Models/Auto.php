@@ -12,4 +12,17 @@ class Auto extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+
+    public function requests($val, $req){
+        if($val == 'create'){
+
+        }
+        if($val == 'update'){
+
+        }
+        if($val == 'delet'){
+
+        }
+    }
+
 }

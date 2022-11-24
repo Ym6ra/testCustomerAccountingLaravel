@@ -54,7 +54,7 @@
 
 </form>
 <hr>
-<form action="{{route('AllData', 1)}}" method="get">
+<form action="{{route('AllData')}}" method="get">
     <button type="submit" class="btn btn-primary">На главную</button>
 </form>
 

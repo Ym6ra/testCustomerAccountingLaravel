@@ -74,20 +74,9 @@
     @endforeach
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        {{--{{$pages['pages']}}--}}
-        @for ($i = 1; $i <= $val['pages']; $i++)
-            @if ($val['pages']!=1)
-                @if ($val['page']==$i)
-                    <li class="page-item"><a class="page-link active" href="{{route('AllData',$i)}}">{{$i}}</a></li>
-                @else
-                    <li class="page-item"><a class="page-link" href="{{route('AllData',$i)}}">{{$i}}</a></li>
-                @endif
-            @endif
-        @endfor
-    </ul>
-</nav>
+{{$data->links()}}
+
+
 
 
 

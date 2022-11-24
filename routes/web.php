@@ -21,38 +21,39 @@ use Illuminate\Support\Facades\View;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/',Function(){
-    return redirect()->route('AllData', 1);
-});
+//Route::get('/',Function(){
+//    return redirect()->route('AllData', 1);
+//});
 
-Route::get('/page/{currentPage}', 'CreateController@ClientAllData')->name('AllData');
+Route::get('/', 'ClientsController@ClientAllData')->name('AllData');
+
 
 Route::get('/createClient', function () {
     return view('createСlient');
 })->name('createClient');
 
-Route::get('/statistic', 'CreateController@statistic')->name('statistic');
+Route::get('/statistic', 'AutosController@statistic')->name('statistic');
 
-Route::get('/updateСlient/{id}', 'UpdateController@updateClient')->name('updateСlientData');
+Route::get('/updateСlient/{id}', 'ClientsController@updateClient')->name('updateСlientData');
 
-Route::post('/updateClient/{id}', 'UpdateController@submitUpdateClient')->name('successUpdateClient');
+Route::post('/updateClient/{id}', 'ClientsController@submitUpdateClient')->name('successUpdateClient');
 
-Route::get('/createAuto/{id}', 'CreateController@ClientData')->name('createAuto');
+Route::get('/createAuto/{id}', 'AutosController@ClientData')->name('createAuto');
 
-Route::get('/updateAuto/{id}', 'UpdateController@updateAuto')->name('updateAuto');
+Route::get('/updateAuto/{id}', 'AutosController@updateAuto')->name('updateAuto');
 
-Route::post('/updateAuto/{id}', 'UpdateController@submitUpdateAuto')->name('succesUpdateAuto');
+Route::post('/updateAuto/{id}', 'AutosController@submitUpdateAuto')->name('succesUpdateAuto');
 
-Route::post('/createClient', 'CreateController@submitClient')->name('successCreateClient');
+Route::post('/createClient', 'ClientsController@submitClient')->name('successCreateClient');
 
-Route::post('/client/{id}', 'CreateController@submitAuto')->name('successCreateAuto');
+Route::post('/client/{id}', 'AutosController@submitAuto')->name('successCreateAuto');
 
-Route::get('/client/{id}', 'CreateController@oneClient')->name('oneClientData');
+Route::get('/client/{id}', 'ClientsController@oneClient')->name('oneClientData');
 
-Route::get('/client/{id}/delete', 'DeleteController@deleteClient')->name('deleteClient');
+Route::get('/client/{id}/delete', 'ClientsController@deleteClient')->name('deleteClient');
 
-Route::post('/page/{currentPage}', 'UpdateController@updateStatus')->name('updateStatus');
+Route::post('/page/{currentPage}', 'AutosController@updateStatus')->name('updateStatus');
 
-Route::get('/auto/{id}/delete', 'DeleteController@deleteAuto')->name('deleteAuto');
+Route::get('/auto/{id}/delete', 'AutosController@deleteAuto')->name('deleteAuto');
 
 

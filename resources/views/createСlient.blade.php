@@ -44,11 +44,6 @@
             </select>
         </div>
         </div>
-        {{--<div class="form-group col-md2">
-            <label for="cars">Машины</label>
-            <input type='number' name='cars' placeholder="Сколько машин" id='cars' class='form-control'>
-        </div>--}}
-
     </div>
     <button type="submit" class="btn btn-primary">Отправить данные клиента</button>
 
@@ -62,3 +57,4 @@
 
 
 @endsection
+{{--проверено перед commit--}}

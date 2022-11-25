@@ -72,3 +72,5 @@ class ClientsController extends Controller
         return redirect()->back();
     }
 }
+//проверено перед commit
+

@@ -57,3 +57,4 @@ Route::patch('/updateStatus/{id}', 'AutosController@updateStatus')->name('update
 Route::get('/auto/{id}/delete', 'AutosController@deleteAuto')->name('deleteAuto');
 
 
+//проверено перед commit

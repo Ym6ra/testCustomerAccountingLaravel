@@ -19,7 +19,6 @@
     <h4>Автомобиль № {{$data->id}}</h4>
     <input type="hidden" name="id" value="{{$data->id}}">
     <input type="hidden" name="client_id" value="{{$data->client_id}}">
-    <input type="hidden" name="cars" value="1"> <!--оставшийся костыль -->
     <div class="form-row col-md-10">
         <div class="form-group col-md-2">
             <label for="mark">Марка</label>
@@ -58,3 +57,4 @@
 
 
 @endsection
+{{--проверено перед commit--}}

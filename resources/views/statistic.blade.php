@@ -27,7 +27,6 @@
     </tr>
     </thead>
     <tbody>
-        {{--{{dd($data)}}--}}
         @for ($i = 0; $i < $data['AutosMarkCount']; $i++)
         <tr>
             <td class="text-center">
@@ -54,3 +53,4 @@
 
 
 @endsection
+{{--проверено перед commit--}}

@@ -105,3 +105,4 @@ class Auto extends Model
         return $query->orderBy($val)->where($val, $id)->get();
     }
 }
+//проверено перед commit

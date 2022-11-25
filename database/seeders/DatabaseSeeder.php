@@ -22,3 +22,5 @@ class DatabaseSeeder extends Seeder
         Auto::factory(30)->create();
     }
 }
+//проверено перед commit
+

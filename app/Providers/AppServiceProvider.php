@@ -27,3 +27,5 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
     }
 }
+//проверено перед commit
+

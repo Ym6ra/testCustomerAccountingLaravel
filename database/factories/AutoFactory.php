@@ -56,3 +56,4 @@ class AutoFactory extends Factory
         ];
     }
 }
+//проверено перед commit

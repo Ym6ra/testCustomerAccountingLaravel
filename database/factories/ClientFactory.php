@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Nette\Utils\Random;
+use Carbon\Carbon;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
@@ -16,8 +19,20 @@ class ClientFactory extends Factory
      */
     public function definition()
     {
+        $genders = [
+            'муж',
+            'жен',
+            'иное',
+        ];
+        $x = 9; //степень
+        $phones = rand(pow(10,$x-1),pow(10,$x)-1);
         return [
-//
+            'name'=>fake()->name(),
+            'gender'=>$genders[rand(0,2)],
+            'phone'=>$phones,
+            'address'=>fake()->sentence(3),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
         ];
     }
 }

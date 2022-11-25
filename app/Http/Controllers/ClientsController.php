@@ -22,7 +22,6 @@ class ClientsController extends Controller
             'gender' => htmlspecialchars($req->input('gender')),
             'phone' => htmlspecialchars($req->input('phone')),
             'address' => htmlspecialchars($req->input('address')),
-            'cars' => 1,
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
         ]);
@@ -102,7 +101,6 @@ class ClientsController extends Controller
             'gender' => htmlspecialchars($req->input('gender')),
             'phone' => htmlspecialchars($req->input('phone')),
             'address' => htmlspecialchars($req->input('address')),
-            'cars' => 1,
             "updated_at" => \Carbon\Carbon::now(),
         ]);
 

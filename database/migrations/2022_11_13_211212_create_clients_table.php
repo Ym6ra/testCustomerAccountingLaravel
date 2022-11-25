@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('gender');
             $table->char('phone', 11)->unique();
             $table->string('address');
-            $table->integer('cars');
             $table->timestamps();
         });
     }

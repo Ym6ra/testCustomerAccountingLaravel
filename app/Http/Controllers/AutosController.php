@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateAutoRequest;
 use App\Http\Requests\CreateClientRequest;
 use App\Http\Requests\updateStatusRequest;
-use App\Http\Requests\updateAutoRequest;
 
 use Carbon\Carbon;
 
@@ -54,7 +53,7 @@ class AutosController extends Controller
         return view('updateAuto', ['data' => $auto]);
     }
 
-    public function submitUpdateAuto($id, updateAutoRequest $req)
+    public function submitUpdateAuto($id, CreateAutoRequest $req)
     {
         $currentId = $id;
         $client_id = $req->input('client_id');

@@ -29,7 +29,6 @@ class CreateClientRequest extends FormRequest
             'gender' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            //'cars' => 'required',
         ];
     }
     public function messages()
@@ -40,7 +39,6 @@ class CreateClientRequest extends FormRequest
             'gender.required' => 'Выборите пол',
             'phone.required' => 'Укажите телефон',
             'address.required' => 'Укажите адрес',
-            //'cars.required' => 'Выберите количество машин',
         ];
     }
 }

@@ -3,24 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateAutoRequest;
-use App\Http\Requests\CreateClientRequest;
-
-use Carbon\Carbon;
-
-use Illuminate\Support\Facades\DB;
-use App\Models\Client;
+use App\Http\Requests\AutoRequest;
 use App\Models\Auto;
 
 class AutosController extends Controller
 {
-    public function submitAuto(CreateAutoRequest $req)
+    public function submitAuto(AutoRequest $req)
     {
         $auto = Auto::Query()->InsertData($req);
         return redirect()->route('oneClientData', $req->input('client_id'));
     }
 
-    public function updateStatus($id, CreateAutoRequest $req)
+    public function updateStatus($id, AutoRequest $req)
     {
         $val = 'id';
         $auto = Auto::Query()->SearchByVal($val, $id)->Status($req);
@@ -34,7 +28,7 @@ class AutosController extends Controller
         return view('updateAuto', ['data' => $auto]);
     }
 
-    public function submitUpdateAuto($id, CreateAutoRequest $req)
+    public function submitUpdateAuto($id, AutoRequest $req)
     {
         $client_id = $req->input('client_id');
         $auto = Auto::Query()->SearchId($id)->UpdateData($req);

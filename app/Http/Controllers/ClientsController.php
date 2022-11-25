@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateAutoRequest;
-use App\Http\Requests\CreateClientRequest;
-use App\Http\Requests\updateStatusRequest;
-use Carbon\Carbon;
-
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
 use App\Models\Auto;
 
 class ClientsController extends Controller
 {
 
-    public function submitClient(CreateClientRequest $req)
+    public function submitClient(ClientRequest $req)
     {
         $client =  Client::Query()->InsertDataGetId($req);
         return redirect()->route('oneClientData', $client);
@@ -64,7 +59,7 @@ class ClientsController extends Controller
         $client = Client::query()->SearchByVal($val)->first();
         return view('updateClient', ['data' => $client]);
     }
-    public function submitUpdateClient($id, CreateClientRequest $req)
+    public function submitUpdateClient($id, ClientRequest $req)
     {
         $val = ['id', $id];
         $client = Client::query()->SearchByVal($val)->UpdateData($req);

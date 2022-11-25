@@ -29,8 +29,9 @@ class AutosController extends Controller
 
     public function submitUpdateAuto($id, AutoRequest $req)
     {
+        $val = 'id';
         $client_id = $req->input('client_id');
-        $auto = Auto::Query()->SearchId($id)->UpdateData($req);
+        $auto = Auto::Query()->SearchByVal($val, $id)->UpdateData($req);
         return redirect()->route('oneClientData', $client_id);
     }
     public function statistic()

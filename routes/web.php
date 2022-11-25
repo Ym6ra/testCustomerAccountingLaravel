@@ -36,13 +36,13 @@ Route::get('/statistic', 'AutosController@statistic')->name('statistic');
 
 Route::get('/updateСlient/{id}', 'ClientsController@updateClient')->name('updateСlientData');
 
-Route::post('/updateClient/{id}', 'ClientsController@submitUpdateClient')->name('successUpdateClient');
+Route::patch('/updateClient/{id}', 'ClientsController@submitUpdateClient')->name('successUpdateClient');
 
 Route::get('/createAuto/{id}', 'AutosController@ClientData')->name('createAuto');
 
 Route::get('/updateAuto/{id}', 'AutosController@updateAuto')->name('updateAuto');
 
-Route::post('/updateAuto/{id}', 'AutosController@submitUpdateAuto')->name('succesUpdateAuto');
+Route::patch('/updateAuto/{id}', 'AutosController@submitUpdateAuto')->name('succesUpdateAuto');
 
 Route::post('/createClient', 'ClientsController@submitClient')->name('successCreateClient');
 

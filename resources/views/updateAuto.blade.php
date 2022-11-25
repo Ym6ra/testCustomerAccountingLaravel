@@ -15,6 +15,7 @@
 @endif
 
 <form action="{{route('succesUpdateAuto', $data->id )}}" method="post">
+        <input type="hidden" name="_method" value="patch" />
     @csrf
     <h4>Автомобиль № {{$data->id}}</h4>
     <input type="hidden" name="id" value="{{$data->id}}">

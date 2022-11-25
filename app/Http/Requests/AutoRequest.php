@@ -33,13 +33,17 @@ class AutoRequest extends FormRequest
                         'mark' => 'required',
                         'model' => 'required',
                         'color' => 'required',
-                        'number' => 'required',
+                        'number' => 'required|unique:autos',
                         'status' => 'required',
                     ];
             }
             case 'PUT':
             case 'PATCH':{
                     return [
+                        'mark' => 'required',
+                        'model' => 'required',
+                        'color' => 'required',
+                        'number' => 'required',
                         'status' => 'required',
                     ];
             }
@@ -56,6 +60,7 @@ class AutoRequest extends FormRequest
             'color.required' => 'Выберите цвет автомобиля',
             'number.required' => 'Укажите гос. номер автомобиля',
             'status.required' => 'Статус не определен',
+            'number.unique' => 'Гос. номер уже используется',
         ];
     }
 }

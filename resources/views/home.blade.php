@@ -39,6 +39,10 @@
                             <input type="hidden" name="_method" value="patch" />
                         @csrf 
                         @if ($val['autos'][$i][$a]->status == 'Присутствует')
+                            <input type="hidden" name="mark" value="{{$val['autos'][$i][$a]->mark}}">
+                            <input type="hidden" name="model" value="{{$val['autos'][$i][$a]->model}}">
+                            <input type="hidden" name="number" value="{{$val['autos'][$i][$a]->number}}">
+                            <input type="hidden" name="color" value="{{$val['autos'][$i][$a]->color}}">
                             <input type="hidden" name="status" value="Отсутствует">
                             <button type="submit" class="alert alert-success">
                                 <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>
@@ -46,6 +50,10 @@
                             </button>
                         </form>
                         @else
+                            <input type="hidden" name="mark" value="{{$val['autos'][$i][$a]->mark}}">
+                            <input type="hidden" name="model" value="{{$val['autos'][$i][$a]->model}}">
+                            <input type="hidden" name="number" value="{{$val['autos'][$i][$a]->number}}">
+                            <input type="hidden" name="color" value="{{$val['autos'][$i][$a]->color}}">
                             <input type="hidden" name="status" value="Присутствует">
                             <button type="submit" class="alert alert-danger">
                                 <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>

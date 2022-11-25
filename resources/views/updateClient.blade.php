@@ -19,6 +19,7 @@
     </div>
 @endif
 <form action="{{route('successUpdateClient',$data->id)}}" method="post">
+    <input type="hidden" name="_method" value="patch" />
     @csrf
     <div class="form-row col-md-10">
         <div class="form-group col-md-4">

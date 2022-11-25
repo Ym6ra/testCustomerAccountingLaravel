@@ -31,12 +31,19 @@ class ClientRequest extends FormRequest
                     return [
                         'name' => 'required|min:3',
                         'gender' => 'required',
-                        'phone' => 'required',
+                        'phone' => 'required|unique:clients',
                         'address' => 'required',
                     ];
                 }
             case 'PUT':
-            case 'PATCH':
+            case 'PATCH': {
+                    return [
+                        'name' => 'required|min:3',
+                        'gender' => 'required',
+                        'phone' => 'required',
+                        'address' => 'required',
+                    ];
+                }
             default:
                 break;
         }
@@ -50,6 +57,7 @@ class ClientRequest extends FormRequest
             'gender.required' => 'Выборите пол',
             'phone.required' => 'Укажите телефон',
             'address.required' => 'Укажите адрес',
+            'phone.unique' => 'Телефон уже используется',
         ];
     }
 }

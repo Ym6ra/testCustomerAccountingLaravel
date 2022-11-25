@@ -24,15 +24,30 @@ class CreateAutoRequest extends FormRequest
      */
     public function rules()
     {   
-        return [
-            'client_id' => 'required',
-            'mark' => 'required',
-            'model' => 'required',
-            'color' => 'required',
-            'number' => 'required',
-            'status' => 'required',
-        ];
+        switch($this->method()){
+            case 'GET':
+            case 'DELETE':
+            case 'POST':{
+                    return [
+                        'client_id' => 'required',
+                        'mark' => 'required',
+                        'model' => 'required',
+                        'color' => 'required',
+                        'number' => 'required',
+                        'status' => 'required',
+                    ];
+            }
+            case 'PUT':
+            case 'PATCH':{
+                    return [
+                        'status' => 'required',
+                    ];
+            }
+            default:
+                break;
+        }
     }
+
     public function messages()
     {
         return [

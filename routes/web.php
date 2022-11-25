@@ -52,7 +52,7 @@ Route::get('/client/{id}', 'ClientsController@oneClient')->name('oneClientData')
 
 Route::get('/client/{id}/delete', 'ClientsController@deleteClient')->name('deleteClient');
 
-Route::post('/page/{currentPage}', 'AutosController@updateStatus')->name('updateStatus');
+Route::patch('/updateStatus/{id}', 'AutosController@updateStatus')->name('updateStatus');
 
 Route::get('/auto/{id}/delete', 'AutosController@deleteAuto')->name('deleteAuto');
 

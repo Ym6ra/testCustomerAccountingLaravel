@@ -40,6 +40,7 @@
                     @if ($client->id == $val['autos'][$i][$a]->client_id)
                         {{--{{$val['autos'][$i][$a]->client_id}}--}}
                         <form action="{{route('updateStatus',$val['autos'][$i][$a]->id)}} " method="post">
+                            <input type="hidden" name="_method" value="patch" />
                         @csrf 
                         @if ($val['autos'][$i][$a]->status == 'Присутствует')
                             <input type="hidden" name="status" value="Отсутствует">

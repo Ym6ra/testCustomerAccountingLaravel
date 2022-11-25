@@ -138,7 +138,6 @@
     @csrf
     <h4>Новый Автомобиль</h4>
         <input type="hidden" name="client_id" value="{{$data['clientId']}}">
-        <input type="hidden" name="cars" value="1"> <!--оставшийся костыль -->
         @include('layouts/carsCreate')
         <button type="submit" class="btn btn-primary">Сохранить автомобиль</button>
 </form>

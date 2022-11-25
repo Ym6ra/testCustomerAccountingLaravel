@@ -24,13 +24,24 @@ class CreateClientRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:3',
-            'gender' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE':
+            case 'POST': {
+                    return [
+                        'name' => 'required|min:3',
+                        'gender' => 'required',
+                        'phone' => 'required',
+                        'address' => 'required',
+                    ];
+                }
+            case 'PUT':
+            case 'PATCH':
+            default:
+                break;
+        }
     }
+    
     public function messages()
     {
         return [

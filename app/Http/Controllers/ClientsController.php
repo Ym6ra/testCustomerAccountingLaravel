@@ -17,40 +17,26 @@ class ClientsController extends Controller
 
     public function submitClient(CreateClientRequest $req)
     {
-        $client =  DB::table('clients')->insertGetId([
-            'name' => htmlspecialchars($req->input('name')),
-            'gender' => htmlspecialchars($req->input('gender')),
-            'phone' => htmlspecialchars($req->input('phone')),
-            'address' => htmlspecialchars($req->input('address')),
-            "created_at" =>  \Carbon\Carbon::now(),
-            "updated_at" => \Carbon\Carbon::now(),
-        ]);
+        $client =  Client::Query()->InsertDataGetId($req);
         return redirect()->route('oneClientData', $client);
     }
 
-    public function ClientData($id)
-    {
-        $client = DB::table('clients')->where('id', $id)->get();
-        $autos = DB::table('autos')->where('client_id', $id)->get();
-        dd($autos);
-        return view('createAuto',['client' => $client]);
-    }
     public function ClientAllData()
     {
         $take = 3;
-        $clients = DB::table('clients')->paginate($take);
-
+        $clients = Client::Query()->paginate($take);
+        if($clients->lastPage() < $clients->currentPage()){
+            return redirect()->route('AllData');
+        }
         for ($i = 0; $i < $take; $i++) {
             if($clients[$i] != null){
-            $auto = DB::table('autos')
-                ->orderBy('client_id')
-                ->where('client_id', $clients[$i]->id)
-                ->get();
+            $val = 'client_id';
+            $id = $clients[$i]->id;
+            $auto = Auto::Query()->AutoForPaginate($val, $id);
             }
             $autos[$i] = $auto;
             $autosPerClient[$i] = $auto->count();
         }
-
         $val =[
             'clientsPerPage'=> $take,
             'autosPerClient'=> $autosPerClient,
@@ -60,16 +46,9 @@ class ClientsController extends Controller
         return view('home', ['data' => $clients], ['val'=>$val]);
     }
     public function oneClient($id){
-
-        $client = DB::table('clients')
-                        ->leftJoin('autos', 'clients.id','=','autos.client_id')
-                        ->where('clients.id', $id)
-                        ->get();
-        
-        $paginateId = DB::table('clients')
-                        ->select('id')
-                        ->orderBy('id')
-                        ->get();
+        $client = Client::query()->AutoJoin($id);
+        $val = 'id';
+        $paginateId = Client::query()->SelectByVal($val);
         $val = [
             'val' => ($client)->count(),
             'last' => ($paginateId)->count(),
@@ -77,41 +56,24 @@ class ClientsController extends Controller
             'pid' => $paginateId,
         ];
         return view('createAuto', ['client' => $client],['data'=> $val],['pid'=>$paginateId]);
-
     }
 
     public function updateClient($id)
     {
-        $curentId = $id;
-        $client = DB::table('clients')->where('id', $curentId)->first();
-        $val = [
-            'title' => 'Редактировать клиента №',
-            'form' => 'successUpdateClient',
-
-        ];
-        return view('updateClient', ['data' => $client], ['val' => $val]);
+        $val = ['id', $id];
+        $client = Client::query()->SearchByVal($val)->first();
+        return view('updateClient', ['data' => $client]);
     }
-
     public function submitUpdateClient($id, CreateClientRequest $req)
     {
-        $curentId = $id;
-
-        $client = DB::table('clients')->where('id', $curentId)->limit(1)->update([
-            'name' => htmlspecialchars($req->input('name')),
-            'gender' => htmlspecialchars($req->input('gender')),
-            'phone' => htmlspecialchars($req->input('phone')),
-            'address' => htmlspecialchars($req->input('address')),
-            "updated_at" => \Carbon\Carbon::now(),
-        ]);
-
+        $val = ['id', $id];
+        $client = Client::query()->SearchByVal($val)->UpdateData($req);
         return redirect()->route('AllData');
     }
-
     public function deleteClient($id)
     {
-        $curentId = $id;
-        DB::table('clients')->where('id', $curentId)->delete();
-
+        $val = ['id', $id];
+        $client = Client::query()->SearchByVal($val)->delete();
         return redirect()->back();
     }
 }

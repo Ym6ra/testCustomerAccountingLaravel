@@ -23,6 +23,8 @@ class ClientsController extends Controller
         if($clients->lastPage() < $clients->currentPage()){
             return redirect()->route('AllData');
         }
+        $autos = [];
+        $autosPerClient = [];
         for ($i = 0; $i < $take; $i++) {
             if($clients[$i] != null){
             $val = 'client_id';

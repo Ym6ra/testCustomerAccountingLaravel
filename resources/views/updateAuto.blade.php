@@ -39,6 +39,10 @@
             <label for="number">Гос. номер</label>
             <input type='text' name='number' value="{{$data->number}}" id='number' class='form-control'>
         </div>
+            <div class="form-group col-md-2">
+        <label for="region">Регион</label>
+        <input type='number' name='region' value="{{$data->region}}" id='region' class='form-control' min="1" max="999">
+    </div>
         <div class="form-group col-md-4">
             <label for="status">Состояние</label>
             <select name="status" class='form-control'>

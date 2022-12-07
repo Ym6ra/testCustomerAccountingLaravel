@@ -44,13 +44,15 @@ class AutoFactory extends Factory
             'Отсутствует',
             'Присутствует',
         ];
-
+        $number = Str::random(1) . rand(0,9) . rand(0, 9) . rand(0, 9) . Str::random(2);
+        $region = rand(0, 999);
         return [
             'client_id'=> DB::table('clients')->get()->random()->id,
             'mark'=> $marks[rand(0,7)],
             'model'=>$models[rand(0,6)],
             'color'=>fake()->safeHexColor(),
-            'number'=> Str::random(6),
+            'number'=>$number,
+            'region'=> $region,
             'status'=> $status[rand(0,1)],
             'created_at'=>\Carbon\Carbon::now(),
         ];

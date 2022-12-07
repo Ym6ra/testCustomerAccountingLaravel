@@ -106,7 +106,7 @@
                 <div style="height: 15px; width:15px; background-color:{{$client[$i]->color}};" class="text-center"></div>{{$client[$i]->color}}
             </td>
             <td scope="col" class="text-center">
-                {{$client[$i]->number}}
+                {{$client[$i]->number}} {{$client[$i]->region}}
             </td>
             <td scope="col" class="text-center">
                 {{$client[$i]->status}}

@@ -15,7 +15,11 @@
 <div class="form-row col-md-10">
     <div class="form-group col-md-2">
         <label for="number">Гос. номер</label>
-        <input type='text' name='number' placeholder="а111аа" id='number' class='form-control'>
+        <input type='text' name='number' placeholder="a 111 aa" id='number' class='form-control'>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="region">Регион</label>
+        <input type='number' name='region' placeholder="34" id='region' class='form-control' min="1" max="999">
     </div>
     <div class="form-group col-md-4">
         <label for="status">Состояние</label>

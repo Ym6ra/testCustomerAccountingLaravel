@@ -24,8 +24,8 @@ class ClientFactory extends Factory
             'жен',
             'иное',
         ];
-        $x = 9; //степень
-        $phones = rand(pow(10,$x-1),pow(10,$x)-1);
+        //$x = 9; //степень
+        $phones = "+7(". rand(0, 9) . rand(0, 9) . rand(0, 9) . ")" . rand(0, 9) . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9) . "-" . rand(0, 9) . rand(0, 9);
         return [
             'name'=>fake()->name(),
             'gender'=>$genders[rand(0,2)],

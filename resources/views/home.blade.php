@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+{{--{{dd($val)}}--}}
 <table class="table table-bordered">
     <caption>
         <span>Все клиенты</span><br>
@@ -32,7 +32,7 @@
             <div></div>
         </td>
         <td class="text-center">
-            @for ($i = 0; $i <= $val['clientsPerPage']-1; $i++)
+            @for ($i = 0; $i <= $val['clientsPerPage']; $i++)
                 @for ($a = 0; $a <= $val['autosPerClient'][$i]-1; $a++)
                     @if ($client->id == $val['autos'][$i][$a]->client_id)
                         <form action="{{route('updateStatus',$val['autos'][$i][$a]->id)}} " method="post">
@@ -45,7 +45,7 @@
                             <input type="hidden" name="color" value="{{$val['autos'][$i][$a]->color}}">
                             <input type="hidden" name="status" value="Отсутствует">
                             <button type="submit" class="alert alert-success">
-                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>
+                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}} {{$val['autos'][$i][$a]->region}}</strong></span><br>
                                 <span>Статус: {{$val['autos'][$i][$a]->status}}</span>
                             </button>
                         </form>
@@ -56,7 +56,7 @@
                             <input type="hidden" name="color" value="{{$val['autos'][$i][$a]->color}}">
                             <input type="hidden" name="status" value="Присутствует">
                             <button type="submit" class="alert alert-danger">
-                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}}</strong></span><br>
+                                <span>Гос. Номер: <strong>{{$val['autos'][$i][$a]->number}} {{$val['autos'][$i][$a]->region}}</strong></span><br>
                                 <span>Статус: {{$val['autos'][$i][$a]->status}}</span>
                             </button>
                         </form>

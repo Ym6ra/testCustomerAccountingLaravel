@@ -27,7 +27,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="phone">Номер телефона</label>
-            <input type="tel" id="phone" name="phone" class='form-control' placeholder="Только цифры согласно примера 88005553535" >
+            <input type="tel" id="phone" name="phone" class='form-control' placeholder="+7(000)000-00-00" data-phone-pattern> 
         </div>
         </div>
         <div class="form-row col-md-10">

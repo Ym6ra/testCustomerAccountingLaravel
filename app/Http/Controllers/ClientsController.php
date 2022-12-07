@@ -25,17 +25,20 @@ class ClientsController extends Controller
         }
         $autos = [];
         $autosPerClient = [];
+        $clientsPerPage = [];
         for ($i = 0; $i < $take; $i++) {
             if($clients[$i] != null){
             $val = 'client_id';
             $id = $clients[$i]->id;
             $auto = Auto::Query()->AutoForPaginate($val, $id);
+            $clientsPerPage = $i;
             }
             $autos[$i] = $auto;
             $autosPerClient[$i] = $auto->count();
         }
+
         $val =[
-            'clientsPerPage'=> $take,
+            'clientsPerPage'=> $clientsPerPage,
             'autosPerClient'=> $autosPerClient,
             'autos'=>$autos
         ];

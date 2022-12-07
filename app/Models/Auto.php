@@ -17,6 +17,7 @@ class Auto extends Model
         'model',
         'color',
         'number',
+        'region',
         'status',
         'created_at',
         'updated_at',
@@ -54,6 +55,7 @@ class Auto extends Model
             'model' => htmlspecialchars($req->input('model')),
             'color' => htmlspecialchars($req->input('color')),
             'number' => htmlspecialchars($req->input('number')),
+            'region' => htmlspecialchars($req->input('region')),
             'status' => htmlspecialchars($req->input('status')),
             "created_at" =>  \Carbon\Carbon::now(),
             "updated_at" => \Carbon\Carbon::now(),
@@ -66,6 +68,7 @@ class Auto extends Model
             'model' => htmlspecialchars($req->input('model')),
             'color' => htmlspecialchars($req->input('color')),
             'number' => htmlspecialchars($req->input('number')),
+            'region' => htmlspecialchars($req->input('region')),
             'status' => htmlspecialchars($req->input('status')),
             "updated_at" => \Carbon\Carbon::now(),
         ]);

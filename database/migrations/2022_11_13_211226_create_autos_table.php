@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('color');
             $table->string('number')->unique();
+            $table->char('region',3);
             $table->string('status');
             $table->timestamps();
         });

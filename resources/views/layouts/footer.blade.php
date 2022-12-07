@@ -15,4 +15,28 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+$(function () {
+            $('[data-phone-pattern]').on('input blur focus', (e) => {
+                var el = e.target,
+                    clearVal = $(el).data('phoneClear'),
+                    pattern = $(el).data('phonePattern'),
+                    matrix_def = "+7(___) ___-__-__",
+                    matrix = pattern ? pattern : matrix_def,
+                    i = 0,
+                    def = matrix.replace(/\D/g, ""),
+                    val = $(el).val().replace(/\D/g, "");
+                if (clearVal !== 'false' && e.type === 'blur') {
+                    if (val.length < matrix.match(/([\_\d])/g).length) {
+                        $(el).val('');
+                        return;
+                    }
+                }
+                if (def.length >= val.length) val = def;
+                $(el).val(matrix.replace(/./g, function (a) {
+                    return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
+                }));
+            });
+        });
+</script>
 {{--проверено перед commit--}}
